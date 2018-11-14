@@ -1,0 +1,11 @@
+{/*{ coins.filter(searchingFor(this.state.name)).map(coin => 
+      <div key={coin.id} className="coin">
+         <h2 >Name: {coin.name}</h2>
+        <h2>Symbol: {coin.symbol}</h2>
+        <h2>PriceUSD: {Number(coin.price_usd).toFixed (2)}</h2>
+        <h2>Rank: {coin.rank}</h2>
+        <h2>ChangeIn7days: {coin.percent_change_7d}%</h2>
+      </div>
+   )
+   }*/}
+    
