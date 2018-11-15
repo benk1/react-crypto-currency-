@@ -94,10 +94,10 @@ handleChange = (e) => {
     const {result} = this.state;
     
     const newArray = result.map((coin,i) =><div key={'coin'+i} className="coin"><div className="name">Name: {coin.name}</div>
-    <div className="symbol">Symbol: {coin.symbol}</div><div className="priceUsd">PriceUSD: {Number(coin.price_usd).toFixed(2) }</div>
+    <div className="symbol">Symbol: {coin.symbol}</div><div className="priceUsd">PriceUSD:{Number(coin.price_usd).toFixed(2)}</div>
     <div className="rank">Rank: {coin.rank}</div>
     <div className="changepercentage">ChangeIn7days:
-      <div style={coin.percent_change_7d >=0 ? {color: "green"}:{color: "red"}}> {coin.percent_change_7d}%</div>
+      <div style={coin.percent_change_7d >=0 ? {color: "green"}:{color: "red"}}>  {coin.percent_change_7d}%</div>
     </div>
     </div>)
   /*const newArray = coins.filter(searchingFor(this.state.name)).map((coin,i) =><div key={coin.id} className="coin"><h2 >Name: {coin.name}</h2>
