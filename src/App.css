@@ -21,6 +21,8 @@ input{
 }
 
 .coin{
+  display: flex;
+  flex-direction: column;
   width: 17em;
   height: 17em;
   border-radius: 10px;
@@ -77,17 +79,34 @@ p{
   
 }
 button{
-  background-color: green;
+ 
+  background-color: #2d0014;
   text-align: center;
   color: white;
   /*#F6FFCF;*/
-  border-radius: 10px;
+  border-radius: 5px;
+  /*width: max-content;*/
   width: 105px;
   height: 60px;
   line-height: 60px;
   margin-top: 80px;
+  font-size: 20px;
+ 
 }
 .header{
   /*margin-top: 100px;*/
 }
+
+.name .symbol .priceUsd .rank .changepercentage{
+  text-align: center;
+  color: black;
+  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
+}
+
+.changepercentage{
+  display: flex;
+  justify-content: center;
+}
+
 

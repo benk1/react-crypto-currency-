@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import Coins from "./components/Coins";
 import './App.css';
 //import Search from "./components/Search";
-const url = 'https://api.coinmarketcap.com/v1/ticker/?limit=20';
+const url = 'https://api.coinmarketcap.com/v1/ticker/?limit=200';
 
 const searchingFor = (name) => {
   return function(x){
@@ -57,9 +57,9 @@ class App extends Component {
     const data = Array.from(this.state.result)
     
     const sortedName =    data.sort((a,b) => {
-      if(a.name > b.name) return -1;
-      else if (a.name < b.name) return 1;
-      return 0;
+      if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+      else if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+       else return 0;
     });
     console.log(sortedName)
     this.setState({
@@ -86,15 +86,20 @@ handleChange = (e) => {
 
 }
 
+
+
   
 
   render() {
     const {result} = this.state;
     
-    const newArray = result.map((coin,i) =><div key={coin.id} className="coin"><h2 >Name: {coin.name}</h2>
-    <h2>Symbol: {coin.symbol}</h2><h2>PriceUSD: {Number(coin.price_usd).toFixed (2)}</h2>
-    <h2>Rank: {coin.rank}</h2><h2>ChangeIn7days: {coin.percent_change_7d}%</h2></div>) 
-  
+    const newArray = result.map((coin,i) =><div key={'coin'+i} className="coin"><div className="name">Name: {coin.name}</div>
+    <div className="symbol">Symbol: {coin.symbol}</div><div className="priceUsd">PriceUSD: {Number(coin.price_usd).toFixed(2) }</div>
+    <div className="rank">Rank: {coin.rank}</div>
+    <div className="changepercentage">ChangeIn7days:
+      <div style={coin.percent_change_7d >=0 ? {color: "green"}:{color: "red"}}> {coin.percent_change_7d}%</div>
+    </div>
+    </div>)
   /*const newArray = coins.filter(searchingFor(this.state.name)).map((coin,i) =><div key={coin.id} className="coin"><h2 >Name: {coin.name}</h2>
   <h2>Symbol: {coin.symbol}</h2><h2>PriceUSD: {Number(coin.price_usd).toFixed (2)}</h2>
   <h2>Rank: {coin.rank}</h2><h2>ChangeIn7days: {coin.percent_change_7d}%</h2></div>) */
@@ -108,7 +113,7 @@ handleChange = (e) => {
     </div>*/}
     <div className="header">
     <h1>Cryptocurrency </h1>
-    <input type="text"   onChange={this.handleChange} placeholder="Search Criteria" />
+    <input type="text" ref="bitcoins"   onChange={this.handleChange} placeholder="Search Bitcoin Name" />
     <p>Sum Of Searched Coins: {newArray.length}</p>
     </div>
    
@@ -133,3 +138,4 @@ handleChange = (e) => {
 
 export default App;
 
+//(coin.percent_change_7d) >= 0 ? <i className="fas fa-arrow-down"></i> : <i className="fas fa-arrow-up"></i>
