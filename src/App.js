@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import Coins from "./components/Coins";
+import Coin from "./components/Coin";
 import './App.css';
 //import Search from "./components/Search";
 const url = 'https://api.coinmarketcap.com/v1/ticker/?limit=200';
@@ -93,13 +93,7 @@ handleChange = (e) => {
   render() {
     const {result} = this.state;
     
-    const newArray = result.map((coin,i) =><div key={'coin'+i} className="coin"><div className="name">Name: {coin.name}</div>
-    <div className="symbol">Symbol: {coin.symbol}</div><div className="priceUsd">PriceUSD:{Number(coin.price_usd).toFixed(2)}</div>
-    <div className="rank">Rank: {coin.rank}</div>
-    <div className="changepercentage">ChangeIn7days:
-      <div style={coin.percent_change_7d >=0 ? {color: "green"}:{color: "red"}}>  {coin.percent_change_7d}%</div>
-    </div>
-    </div>)
+    const newArray = result.map((coin,i) => <Coin key={'coin'+i} coin={coin}/>)
   /*const newArray = coins.filter(searchingFor(this.state.name)).map((coin,i) =><div key={coin.id} className="coin"><h2 >Name: {coin.name}</h2>
   <h2>Symbol: {coin.symbol}</h2><h2>PriceUSD: {Number(coin.price_usd).toFixed (2)}</h2>
   <h2>Rank: {coin.rank}</h2><h2>ChangeIn7days: {coin.percent_change_7d}%</h2></div>) */
