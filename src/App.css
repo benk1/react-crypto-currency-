@@ -4,23 +4,7 @@
   padding: 0;
 }
 
-input{
-  width: 60%;
-  /*height: 40%;*/
-  text-align: center;
- background: #f4f7f6;
-    font-size: 30px;
-    color: gray;
-    /*margin-bottom: 0px;*/
-   
-   
-    /*display: block;*/
-    height: 2em;
-    
-   
-}
-
-.coin{
+.coin {
   display: flex;
   flex-direction: column;
   width: 17em;
@@ -28,59 +12,58 @@ input{
   border-radius: 10px;
   border: 2px solid black;
   margin: 15px;
-    /*width: 350px;*/
-    height: 150px;
-    justify-content: center;
-    transition: all .1s cubic-bezier(.25,.8,.25,1);
-    background-color: white;
-    font-weight: bold;
+  /*width: 350px;*/
+  height: 150px;
+  justify-content: center;
+  transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background-color: white;
+  font-weight: bold;
 }
-.coin:hover{
+.coin:hover {
   background-color: lightskyblue;
 }
 
-h1{
+h1 {
   color: green;
   font-size: 35px;
   font-weight: bold;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 5vh;
   text-align: center;
+  margin-bottom: -40px;
 }
 
-.container{
-  
+.container {
   display: flex;
   flex-wrap: wrap;
-  background-color:  #f4f7f6;
+  background-color: #f4f7f6;
   /*font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
 }
-h2{
+h2 {
   margin: 0;
   padding: 0;
   text-align: center;
   color: black;
-  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans",
+    "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 18px;
 }
-p{
+p {
   /*margin-bottom:  600px;*/
   font-size: 25px;
   font-weight: bold;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   /*padding: 0.5vh;*/
   text-align: center;
   color: green;
 }
 
-.sortBy{
+.sortBy {
   display: flex;
   text-align: center;
   justify-content: left;
-  
 }
-button{
- 
+button {
   background-color: #2d0014;
   text-align: center;
   color: white;
@@ -92,28 +75,41 @@ button{
   line-height: 60px;
   margin-top: 80px;
   font-size: 20px;
-  cursor: pointer; 
+  cursor: pointer;
+  outline: none;
 }
 
-button:hover{
+button:hover {
   background-color: white;
   color: black;
 }
-.header{
+.header {
   /*margin-top: 100px;*/
 }
 
-.name .symbol .priceUsd .rank .changepercentage{
+.name .symbol .priceUsd .rank .changepercentage {
   text-align: center;
   color: black;
-  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans",
+    "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 18px;
-  
 }
 
-.changepercentage{
+.changepercentage {
   display: flex;
   justify-content: center;
 }
+.inputSearch {
+  width: 60%;
+  text-align: center;
+  background: #f4f7f6;
+  font-size: 30px;
+  color: gray;
+  height: 2em;
+  border-color: black;
+  outline-color: yellow;
+}
 
-
+.page-link {
+  cursor: pointer;
+}
