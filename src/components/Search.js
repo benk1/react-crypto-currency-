@@ -9,6 +9,7 @@ const Search = props => {
         type="text"
         onChange={props.handleChange}
         placeholder="Search Bitcoin Name"
+        
       />
       <p>Sum Of Searched Coins: {props.newArray.length}</p>
     </div>
