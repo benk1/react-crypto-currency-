@@ -3,13 +3,14 @@ import Coin from "./components/Coin";
 import "./App.css";
 import Search from "./components/Search";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "font-awesome/css/font-awesome.css";
+//import "font-awesome/css/font-awesome.css";
 //import axios from "axios";
 import Coins from "./components/Coins";
 
 import Pagination from "./components/Pagination";
 
 import { paginate } from "./utils/paginate";
+import SortBy from "./components/SortBy";
 const url = "https://api.coinmarketcap.com/v1/ticker/?limit=100";
 
 const searchingFor = name => {
@@ -65,7 +66,6 @@ class App extends Component {
       result: sortedRank.reverse()
     });
   };
-
 
   sortByNameAsc = () => {
     const data = Array.from(this.state.result);
@@ -123,11 +123,9 @@ class App extends Component {
     const key = e.target.value;
 
     const searchResult = this.state.coins.filter(searchingFor(key));
-   
+
     this.setState({
-      result: searchResult,
-    
-      
+      result: searchResult
     });
   };
 
@@ -149,62 +147,16 @@ class App extends Component {
     return (
       <div className="App">
         <Search handleChange={this.handleChange} newArray={newArray} />
+        <SortBy
+          sortByRankAsc={this.sortByRankAsc}
+          sortByRankDesc={this.sortByRankDesc}
+          sortByNameAsc={this.sortByNameAsc}
+          sortByNameDesc={this.sortByNameDesc}
+          sortByPriceAsc={this.sortByPriceAsc}
+          sortByPriceDesc={this.sortByPriceDesc}
 
-        {
-          <div className="sortBy">
-            {" "}
-             {/* <p>Sort By:</p>  */}
-            <div className="Name">
-              <i
-              
-                className="fa fa-long-arrow-up fa-2x"
-                aria-hidden="true"
-                onClick={this.sortByNameAsc}
-              >
-                Name
-              </i>
-              <i
-                className="fa fa-long-arrow-down fa-2x"
-                aria-hidden="true"
-                onClick={this.sortByNameDesc}
-              />
-            </div>
-
-            <div className="Price">
-              <i
-                className="fa fa-long-arrow-up fa-2x"
-                aria-hidden="true"
-                onClick={this.sortByPriceAsc }
-              >
-                Price
-              </i>
-              <i
-                className="fa fa-long-arrow-down fa-2x"
-                aria-hidden="true"
-                onClick={this.sortByPriceDesc}
-              />
-            </div>
-
-            <div className="Rank">
-              <i
-                className="fa fa-long-arrow-up fa-2x"
-                aria-hidden="true"
-                onClick={this.sortByRankAsc }
-              >
-                Rank
-              </i>
-              <i
-                className="fa fa-long-arrow-down fa-2x"
-                aria-hidden="true"
-                onClick={this.sortByRankDesc}
-              />
-            </div>
-            {/* <button onClick={this.sortByName}>Name</button>
-            <button onClick={this.sortByPrice}>Price</button>
-            <button onClick={this.sortByRank}>Rank</button> */}
-          </div>
-        }
-
+        />
+      
         <div className="container">
           <Coins coins={allCoins} />
           <Pagination
