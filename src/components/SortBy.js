@@ -10,7 +10,7 @@ const SortBy =  (props) => {
       {
           <div className="sortBy">
             {" "}
-             {/* <p>Sort By:</p>  */}
+              {/* <p>Sort By:</p>   */}
             <div className="Name">
               <i
               

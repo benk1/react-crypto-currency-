@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Coin from "./components/Coin";
+
 import "./App.css";
 import Search from "./components/Search";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import "font-awesome/css/font-awesome.css";
-//import axios from "axios";
+
+import axios from "axios";
 import Coins from "./components/Coins";
 
 import Pagination from "./components/Pagination";
@@ -14,37 +14,35 @@ import SortBy from "./components/SortBy";
 const url = "https://api.coinmarketcap.com/v1/ticker/?limit=100";
 
 const searchingFor = name => {
-  return function(x) {
-    return x.name.toLowerCase().includes(name.toLowerCase()) || !name;
+  console.log('name',name)
+  return function(obj) {
+    //console.log(obj)
+    return obj.name.toLowerCase().includes(name.toLowerCase()) || !name;
   };
 };
 
 class App extends Component {
   state = {
-    //coins: [],
-    //isLoaded: false,
-    name: "",
+    filteredcoins: [],
     result: [],
     pageSize: 10,
     currentPage: 1
   };
 
-  search = e => {
-    this.setState({
-      name: e.target.value
-    });
-  };
+  //  search = e => {
+  //    this.setState({
+  //      name: e.target.value
+  //    });
+  //  };
 
   componentDidMount = () => {
-    fetch(url)
-      .then(response => response.json())
-      .then(coins => {
-        this.setState({
-          //isLoaded: true,
-          coins: coins,
-          result: coins
-        });
+    axios.get(url).then(res => {
+      console.log(res);
+      this.setState({
+        filteredcoins: res.data,
+        result: res.data
       });
+    });
   };
 
   sortByRankAsc = () => {
@@ -122,14 +120,15 @@ class App extends Component {
   handleChange = e => {
     const key = e.target.value;
 
-    const searchResult = this.state.coins.filter(searchingFor(key));
-
+    const searchResult = this.state.filteredcoins.filter(searchingFor(key));
+    console.log('key',key)
     this.setState({
       result: searchResult
     });
   };
 
   handlePageChange = page => {
+    //console.log('mimi',page)
     this.setState({
       currentPage: page
     });
@@ -137,37 +136,37 @@ class App extends Component {
 
   render() {
     const { result, pageSize, currentPage } = this.state;
+
     const allCoins = paginate(result, currentPage, pageSize);
-    if (result.length === 0) return <p>There are no coins at the moment...</p>;
-
-    const newArray = result.map((coin, i) => (
-      <Coin key={"coin" + i} coin={coin} />
-    ));
-
-    return (
-      <div className="App">
-        <Search handleChange={this.handleChange} newArray={newArray} />
-        <SortBy
-          sortByRankAsc={this.sortByRankAsc}
-          sortByRankDesc={this.sortByRankDesc}
-          sortByNameAsc={this.sortByNameAsc}
-          sortByNameDesc={this.sortByNameDesc}
-          sortByPriceAsc={this.sortByPriceAsc}
-          sortByPriceDesc={this.sortByPriceDesc}
-
-        />
-      
-        <div className="container">
-          <Coins coins={allCoins} />
-          <Pagination
-            itemsCount={result.length}
-            pageSize={this.state.pageSize}
-            currentPage={this.state.currentPage}
-            onPageChange={this.handlePageChange}
+   
+    
+      return (
+        <div className="App">
+          <Search
+            handleChange={this.handleChange}
+            coins={result}
+            result={result}
           />
+          <SortBy
+            sortByRankAsc={this.sortByRankAsc}
+            sortByRankDesc={this.sortByRankDesc}
+            sortByNameAsc={this.sortByNameAsc}
+            sortByNameDesc={this.sortByNameDesc}
+            sortByPriceAsc={this.sortByPriceAsc}
+            sortByPriceDesc={this.sortByPriceDesc}
+          />
+
+          <div className="container">
+            <Coins coins={allCoins} />
+            <Pagination
+              itemsCount={result.length}
+              pageSize={this.state.pageSize}
+              currentPage={this.state.currentPage}
+              onPageChange={this.handlePageChange}
+            />
+          </div>
         </div>
-      </div>
-    );
+      );
   }
 }
 
