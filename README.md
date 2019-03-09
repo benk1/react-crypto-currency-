@@ -1,6 +1,6 @@
 
 
-[Check out the Gallery live here: ](https://crypto-currency.netlify.com)
+[Check out the Application live here: ](https://crypto-currency.netlify.com)
 
 
 
